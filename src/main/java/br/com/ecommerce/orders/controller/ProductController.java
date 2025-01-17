@@ -4,6 +4,7 @@ import br.com.ecommerce.orders.dto.ProductRequest;
 import br.com.ecommerce.orders.dto.ProductResponse;
 import br.com.ecommerce.orders.dto.ProductUpdateRequest;
 import br.com.ecommerce.orders.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +27,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponse> create(@RequestBody ProductRequest request){
+    public ResponseEntity<ProductResponse> create(@Valid @RequestBody ProductRequest request){
 
         ProductResponse product = service.createProduct(request);
 
@@ -36,6 +37,13 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody ProductUpdateRequest request){
         service.updateProduct(id,request);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.deleteProduct(id);
 
         return ResponseEntity.noContent().build();
     }

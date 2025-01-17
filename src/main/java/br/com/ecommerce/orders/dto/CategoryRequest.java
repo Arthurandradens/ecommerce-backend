@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JacksonAnnotation;
 import jakarta.validation.constraints.NotBlank;
 
 public record CategoryRequest(
-        @NotBlank
+        @NotBlank(message = "Field is required")
         String name,
         Long parentId
 ) {

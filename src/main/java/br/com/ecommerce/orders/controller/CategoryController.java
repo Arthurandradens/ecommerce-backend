@@ -3,6 +3,7 @@ package br.com.ecommerce.orders.controller;
 import br.com.ecommerce.orders.dto.CategoryRequest;
 import br.com.ecommerce.orders.dto.CategoryResponse;
 import br.com.ecommerce.orders.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +26,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryResponse> create(@RequestBody CategoryRequest request){
+    public ResponseEntity<CategoryResponse> create(@Valid @RequestBody CategoryRequest request){
         var category = service.createCategory(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(category);

@@ -2,17 +2,11 @@ package br.com.ecommerce.orders.model;
 
 import br.com.ecommerce.orders.dto.CategoryRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "categories")
-@Getter
-@Setter
-@AllArgsConstructor
+@Entity
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,6 +2,7 @@ package br.com.ecommerce.orders.service;
 
 import br.com.ecommerce.orders.dto.CategoryRequest;
 import br.com.ecommerce.orders.dto.CategoryResponse;
+import br.com.ecommerce.orders.exception.productExeptions.EntityNotFoundException;
 import br.com.ecommerce.orders.model.Category;
 import br.com.ecommerce.orders.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,6 @@ public class CategoryService {
     public Category getCategory(Long id) {
         return repository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("This id do not exist"));
+                .orElseThrow(() -> new EntityNotFoundException("This category do not exist"));
     }
 }
